@@ -1,0 +1,70 @@
+#include <iostream>
+#include <algorithm>
+#include <random>
+using namespace std;
+
+
+   
+int main()
+{
+    //tao array random
+    int a[4][6];
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(0, 99);
+    
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 6; j++){
+            a[i][j] = dis(gen);
+        }
+        cout << endl;
+    }
+    
+    //xuat array random
+    for (int i = 0 ; i < 4; i++){
+        for (int j = 0; j < 6; j++){
+            cout << a[i][j] << "  ";
+        }
+        cout << endl;
+    }
+
+    //max
+    int max = a[0][0];
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 6; j++){
+            if (max < a[i][j]) max = a[i][j];
+        }
+    }
+    cout << "max = " << max << endl;
+
+    //min
+    int min = a[0][0];
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 6; j++){
+            if(min > a[i][j]) min = a[i][j];
+        }
+    }
+    cout << "min = " << min << endl;
+
+    //tong
+    int sum = 0;
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 6; j++){
+            sum += a[i][j];
+        }
+    }
+    cout << "tong cac gia tri cua mang = " << sum << endl;
+
+    //check so co ton tai
+    int n, check;
+    cout << "moi nhap 1 so: ";
+    cin >> n;
+    check = 0;
+
+    for (int i = 0; i < 4; i++){
+        for (int j = 0; j < 6; j++){
+            if (n == a[i][j]) check ++;
+        }
+    }
+    cout << "co " << check << " so " << n << " trong mang" << endl;
+}
