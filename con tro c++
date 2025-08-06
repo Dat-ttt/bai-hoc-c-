@@ -1,1 +1,51 @@
-con tro c++
+#include <iostream>
+#include <algorithm>
+#include <random>
+using namespace std;
+
+void hoanvi(double *a, double *b){
+    double temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+
+
+   
+int main()
+{
+    //bt23
+    double a, b;
+    cout << "nhap so a: ";
+    cin >> a;
+    cout << "nhap so b: ";
+    cin >> b;
+    hoanvi(&a, &b);
+    cout << "so a sau khi hoan doi: " << a << endl;
+    cout << "so b sau khi hoan doi: " << b << endl;
+
+    //bt24
+    int n, i;
+    cout << "nhap so phan tu: ";
+    cin >> n;
+    int M[n];
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(0, 100);
+
+    for (i = 0; i < n; i++){
+        M[i] = dis(gen);
+    }
+    cout << "Mang M: ";
+    for (i = 0; i < n; i++) cout << M[i] << " ";
+    
+    cout << endl;
+
+    int *m;
+    m = M;
+    sort(m, m + n);
+    reverse(m, m + n);
+    cout << "sap xep giam dan: ";
+    for (i = 0; i < n; i++) cout << *(m+i) << " ";
+
+}
