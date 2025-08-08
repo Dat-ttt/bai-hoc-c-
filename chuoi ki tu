@@ -1,0 +1,33 @@
+#include <iostream>
+#include <algorithm>
+#include <random>
+#include <cstring>
+using namespace std;
+
+    
+
+
+
+   
+int main()
+{
+    //bt 25
+    
+    cout << "nhap chuoi: ";
+    char a[1000];
+    cin.getline(a, 1000);
+
+    for (int i = 0; i < strlen(a); i++){
+        cout << a[i] << " Ma ASCII la: " << (int)a[i] << endl;
+    }
+
+    //bt26
+
+    char b[1000];
+    cout << "nhap chuoi: ";
+    cin.getline(b, 1000);
+    reverse(b, b+strlen(b));
+    cout << b << endl;
+    
+
+}
