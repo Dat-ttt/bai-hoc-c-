@@ -1,0 +1,138 @@
+#include <iostream>
+#include <algorithm>
+#include <random>
+#include <cstring>
+using namespace std;
+
+struct diachi
+{
+    char sonha[25];
+    char tenduong[100];
+    char tinhthanh[25];
+};
+
+struct sinhvien
+{
+    // bien thanh vien hay thuoc tinh
+    char mssv[10];
+    char ten[210];
+    bool sex;
+    diachi nha;
+    diachi truong;
+
+} sv1, sv2; // bien cau truc hay doi tuong
+
+struct book
+{
+    char author[50];
+    char title[100];
+    double price;
+};
+
+struct sv
+{
+    int code;
+    char name[200];
+};
+
+void nhapmang(sv ds[], int total)
+{
+    for (int i = 0; i < total; i++)
+    {
+        cout << "Nhap infor sv thu " << i + 1 << ": " << endl;
+        cout << "Nhap ma: ";
+        cin >> ds[i].code;
+
+        // clear cache
+        cin.ignore();
+
+        cout << "nhap ten: ";
+        gets_s(ds[i].name, sizeof(ds[i].name));
+
+        cin.ignore();
+    }
+}
+
+void xuatmang(sv ds[], int total)
+{
+    for (int i = 0; i < total; i++)
+    {
+        cout << ds[i].code << "\t" << ds[i].name << endl;
+    }
+}
+
+struct student
+{
+    int ma;
+    char bietdanh[2000];
+};
+
+int main()
+{
+    //tao doi tuong cautruc sinhvien
+    sinhvien sv3;
+    sinhvien sv4;
+
+    //gan gia tri
+    sv1 = {{"17323"}, {"Dat"}, {true}, {{"12"}, {"Trung Kinh"}, {"Ha Noi"}}};
+
+    strcpy_s(sv2.mssv, sizeof(sv2.mssv), "69");
+    strcpy_s(sv2.ten, sizeof(sv2.ten), "Phong");
+    sv2.sex = false;
+
+    // truy cap thuoc tinh
+    cout << "Thong tin sv1: " << endl;
+    cout << "mssv: " << sv1.mssv << endl;
+    cout << "ten: " << sv1.ten << endl;
+    cout << "sex: " << (sv1.sex == true ? "Nam" : "Nu") << endl;
+    cout << "so nha: " << sv1.nha.sonha << endl;
+    cout << "duong: " << sv1.nha.tenduong << endl;
+    cout << "que: " << sv1.nha.tinhthanh << endl;
+
+    //sao chep struct
+    book sach1;
+    cout << "nhap ten sach: ";
+    gets_s(sach1.title, sizeof(sach1.title));
+    cout << "ten tac gia: ";
+    gets_s(sach1.author, sizeof(sach1.title));
+    cout << "giac sach: ";
+    cin >> sach1.price;
+
+    book sach2 = sach1; //copy, doc lap
+    //xuat info
+    cout << "info sach2" << endl;
+    cout << "ten: " << sach2.title << endl;
+    cout << "tg: " << sach2.author << endl;
+    cout << "gia: " << sach2.price << endl;
+
+    //mang struct
+     const int total = 4;
+     sv ds[total];
+
+    nhapmang(ds, total);
+    xuatmang(ds, total);
+
+    //con tro struct
+    student *psv2 = new student;
+    student st1;
+
+    st1 = {{1}, {"liam delap"}};
+    cout << "student code: " << st1.ma << endl;
+    cout << "ten stu: " << st1.bietdanh << endl;
+
+    *psv2 = {2, "daon chi binh"}; // gan gia tri sv2
+    // truy cap
+
+    cout << "student code: " << psv2->ma << endl;
+    cout << "ten stu: " << psv2->bietdanh << endl;
+
+    student *psv3;
+    psv3 = &st1;
+    //xuat info
+    cout << "student code: " << psv3->ma << endl;
+    cout << "ten stu: " << psv3->ma << endl;
+
+    *psv3 = {3, "dnd"};
+    cout << psv3->ma << '\t' << psv3->bietdanh << endl;
+    cout << st1.ma << '\t' << st1.bietdanh << endl;
+}
